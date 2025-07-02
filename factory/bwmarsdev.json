@@ -1,5 +1,13 @@
 {
 	"name": "bwmarsdev",
+	"properties": {
+		"globalParameters": {
+			"gblParamEnv": {
+				"type": "string",
+				"value": "ABC"
+			}
+		}
+	},
 	"location": "eastus",
 	"identity": {
 		"type": "SystemAssigned",
