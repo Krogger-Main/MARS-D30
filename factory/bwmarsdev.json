@@ -2,9 +2,9 @@
 	"name": "bwmarsdev",
 	"properties": {
 		"globalParameters": {
-			"gbl_param_Test": {
+			"gblParamTest": {
 				"type": "string",
-				"value": "notglobal"
+				"value": "ABC"
 			},
 			"gbl_Param_Test_2": {
 				"type": "string",
