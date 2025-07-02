@@ -1,5 +1,5 @@
 {
-	"name": "DelimitedText1",
+	"name": "DS_Generic_Blob",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "LS_Blob_Binary",

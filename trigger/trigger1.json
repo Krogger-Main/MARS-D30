@@ -6,7 +6,7 @@
 		"pipelines": [
 			{
 				"pipelineReference": {
-					"referenceName": "pipeline1",
+					"referenceName": "PL_Generic_Test",
 					"type": "PipelineReference"
 				}
 			}

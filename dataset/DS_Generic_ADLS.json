@@ -1,5 +1,5 @@
 {
-	"name": "DelimitedText2",
+	"name": "DS_Generic_ADLS",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "LS_Blob_Binary",

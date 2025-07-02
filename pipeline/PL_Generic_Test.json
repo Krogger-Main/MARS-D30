@@ -1,9 +1,9 @@
 {
-	"name": "pipeline1",
+	"name": "PL_Generic_Test",
 	"properties": {
 		"activities": [
 			{
-				"name": "dataflow1",
+				"name": "DF_Test",
 				"type": "ExecuteDataFlow",
 				"dependsOn": [
 					{
@@ -23,14 +23,14 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataflow": {
-						"referenceName": "dataflow1",
+						"referenceName": "DF_Test",
 						"type": "DataFlowReference"
 					},
 					"compute": {
 						"coreCount": 8,
 						"computeType": "General"
 					},
-					"traceLevel": "Fine"
+					"traceLevel": "Coarse"
 				}
 			},
 			{
