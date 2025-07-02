@@ -1,0 +1,52 @@
+{
+	"name": "DF_Test_3",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DS_Generic_Blob",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DS_Generic_ADLS_3",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				},
+				{
+					"name": "select1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          {Value     Address     Control Set     Country Id     Currency     Description     License Type     Planned Orders Agg Calendar     Region Id     SAP Plant     Sub Region Id     Supply Location Type     Time Zone     Type     Vendor Id} as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 derive({Value     Address     Control Set     Country Id     Currency     Description     License Type     Planned Orders Agg Calendar     Region Id     SAP Plant     Sub Region Id     Supply Location Type     Time Zone     Type     Vendor Id} = '&& + ==') ~> derivedColumn1",
+				"derivedColumn1 select(mapColumn(",
+				"          {Value     Address     Control Set     Country Id     Currency     Description     License Type     Planned Orders Agg Calendar     Region Id     SAP Plant     Sub Region Id     Supply Location Type     Time Zone     Type     Vendor Id}",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"select1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink1"
+			]
+		}
+	}
+}
