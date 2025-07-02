@@ -1,25 +1,9 @@
 {
 	"name": "bwmarsdev",
-	"properties": {
-		"globalParameters": {
-			"gblParamTest": {
-				"type": "string",
-				"value": "ABC"
-			},
-			"gblParamEnv": {
-				"type": "string",
-				"value": "Test"
-			},
-			"gblParamInput": {
-				"type": "string",
-				"value": "notinput"
-			}
-		}
-	},
 	"location": "eastus",
 	"identity": {
 		"type": "SystemAssigned",
-		"principalId": "61812d53-fa5b-4510-bad1-ad30099e9604",
+		"principalId": "438af55b-9b59-4f10-ba98-b284cc615638",
 		"tenantId": "950bde67-19db-467b-9a41-f80b7cf24ecb"
 	}
 }
