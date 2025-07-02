@@ -1,5 +1,5 @@
 {
-	"name": "trigger1",
+	"name": "TRG_Test",
 	"properties": {
 		"annotations": [],
 		"runtimeState": "Stopped",
