@@ -5,6 +5,10 @@
 			"gblParamEnv": {
 				"type": "string",
 				"value": "ABC"
+			},
+			"gblParamInput": {
+				"type": "string",
+				"value": "DEF"
 			}
 		}
 	},
