@@ -23,7 +23,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataflow": {
-						"referenceName": "DF_Test",
+						"referenceName": "DF_Test_2",
 						"type": "DataFlowReference"
 					},
 					"compute": {
