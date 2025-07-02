@@ -15,7 +15,7 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "DS_Generic_ADLS",
+						"referenceName": "DS_Generic_ADLS_2",
 						"type": "DatasetReference"
 					},
 					"name": "sink1"
