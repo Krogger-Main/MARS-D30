@@ -10,7 +10,7 @@
 				"type": "string",
 				"value": "Test"
 			},
-			"gbl_Param_Test_3": {
+			"gblParamInput": {
 				"type": "string",
 				"value": "notinput"
 			}
