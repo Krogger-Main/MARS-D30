@@ -9,6 +9,10 @@
 			"gblParamInput": {
 				"type": "string",
 				"value": "DEF"
+			},
+			"gblParamTest": {
+				"type": "string",
+				"value": "GHI"
 			}
 		}
 	},
