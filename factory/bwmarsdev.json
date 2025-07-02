@@ -6,9 +6,9 @@
 				"type": "string",
 				"value": "ABC"
 			},
-			"gbl_Param_Test_2": {
+			"gblParamEnv": {
 				"type": "string",
-				"value": "notdev"
+				"value": "Test"
 			},
 			"gbl_Param_Test_3": {
 				"type": "string",
