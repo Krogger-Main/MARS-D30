@@ -1,0 +1,100 @@
+# azure-pipelines.yml#one more line to test autotrigger
+
+trigger:
+  branches:
+    include:
+      - devops-test    # change to your branch if needed
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  Subscription:       '72b55951-666c-471a-9346-e2cc5e700df7'
+  ResourceGroupName:  'BWMarsTest'
+  DataFactoryName:    'bwmarsdev'
+
+parameters:
+- name: EnvironmentTag
+  displayName: 'Target Environment'
+  type: string
+  default: 'Dev'
+  values:
+    - Dev
+    - QA
+    - Prod
+steps:
+# 1) Get the code
+- checkout: self
+  persistCredentials: true
+  displayName: 'Checkout sources'
+
+# 2) Install Node.js
+- task: UseNode@1
+  displayName: 'Install Node.js'
+  inputs:
+    version: '18.x'
+
+# 3) Install npm packages (your ADF build tool)
+- task: Npm@1
+  displayName: 'Install npm packages'
+  inputs:
+    command: install
+    workingDir: '$(Build.SourcesDirectory)/DevOps-Code'
+
+# 4) Validate your ADF JSON
+- task: Npm@1
+  displayName: 'Validate ADF resources'
+  inputs:
+    command: custom
+    workingDir: '$(Build.SourcesDirectory)/DevOps-Code'
+    customCommand: >
+      run build validate
+      $(Build.SourcesDirectory)
+      /subscriptions/$(Subscription)/resourceGroups/$(ResourceGroupName)/providers/Microsoft.DataFactory/factories/$(DataFactoryName)
+
+# 5) Export the ARM templates
+- task: Npm@1
+  displayName: 'Export ARM templates'
+  inputs:
+    command: custom
+    workingDir: '$(Build.SourcesDirectory)/DevOps-Code'
+    customCommand: >
+      run build export
+      $(Build.SourcesDirectory)
+      /subscriptions/$(Subscription)/resourceGroups/$(ResourceGroupName)/providers/Microsoft.DataFactory/factories/$(DataFactoryName)
+      "ArmTemplates"
+
+- task: PowerShell@2
+  displayName: 'Tag Build for Environment and Action'
+  inputs:
+    targetType: 'inline'
+    script: |
+      $envTag = "${{ parameters.EnvironmentTag }}"
+      Write-Host "##vso[build.addbuildtag]$envTag"
+
+# 6) Debug: list exactly what was exported
+- script: |
+    echo "=== Export output ==="
+    ls -R "$(Build.SourcesDirectory)/DevOps-Code/ArmTemplates" || echo "No files exported!"
+  displayName: 'List exported ARM templates'
+
+# 7) Stage only the exported files into the artifact staging directory
+- task: CopyFiles@2
+  displayName: 'Stage ARM templates for publish'
+  inputs:
+    SourceFolder: '$(Build.SourcesDirectory)/DevOps-Code/ArmTemplates'
+    Contents: '**'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+# 8) Debug: list what’s actually in the staging dir
+- script: |
+    echo "=== Staging directory contents ==="
+    ls -R "$(Build.ArtifactStagingDirectory)" || echo "Staging directory is empty!"
+  displayName: 'List staging directory'
+
+# 9) Publish that flat list of files as the 'ArmTemplates' artifact
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish ARM Templates Artifact'
+  inputs:
+    pathToPublish: '$(Build.ArtifactStagingDirectory)'
+    artifactName:  'ArmTemplates'
