@@ -1,12 +1,12 @@
 {
-	"name": "trigger1",
+	"name": "TRG_Test",
 	"properties": {
 		"annotations": [],
 		"runtimeState": "Stopped",
 		"pipelines": [
 			{
 				"pipelineReference": {
-					"referenceName": "pipeline1",
+					"referenceName": "PL_Generic_Test",
 					"type": "PipelineReference"
 				}
 			}

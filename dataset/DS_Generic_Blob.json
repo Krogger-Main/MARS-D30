@@ -1,5 +1,5 @@
 {
-	"name": "DelimitedText2",
+	"name": "DS_Generic_Blob",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "LS_Blob_Binary",
@@ -10,15 +10,20 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "out.tab",
-				"container": "outtest"
+				"fileName": "CN_Site_RR.tab",
+				"container": "inputtest"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
 		},
-		"schema": []
+		"schema": [
+			{
+				"name": "Value\tAddress\tControl Set\tCountry Id\tCurrency\tDescription\tLicense Type\tPlanned Orders Agg Calendar\tRegion Id\tSAP Plant\tSub Region Id\tSupply Location Type\tTime Zone\tType\tVendor Id",
+				"type": "String"
+			}
+		]
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"
 }
